@@ -27,7 +27,7 @@ def resize_by_long_or_short(pil_img: Image.Image, edge_mode: str, target_len: in
     return pil_img.resize((new_w, new_h), Image.Resampling.LANCZOS)
 
 # ------------- 简单图像尺寸 -------------
-class EasySizeSimpleImage:
+class QuickSizeSimpleImage:
     def __init__(self): pass
 
     @classmethod
@@ -51,7 +51,7 @@ class EasySizeSimpleImage:
     RETURN_TYPES = ("IMAGE", "MASK", "INT", "INT")
     RETURN_NAMES = ("图像", "遮罩", "宽", "高")
     FUNCTION = "run"
-    CATEGORY = "EasySize"
+    CATEGORY = "QuickSize"
 
     def run(self, 图像=None, 遮罩=None, **kwargs):
         use_edge = kwargs["启用边长缩放"]
@@ -109,7 +109,7 @@ class EasySizeSimpleImage:
         return (图像, 遮罩, w, h)
 
 # ------------- 简单图像尺寸-Latent -------------
-class EasySizeSimpleLatent:
+class QuickSizeSimpleLatent:
     def __init__(self): pass
 
     @classmethod
@@ -126,7 +126,7 @@ class EasySizeSimpleLatent:
 
     RETURN_TYPES = ("LATENT",)
     FUNCTION = "run"
-    CATEGORY = "EasySize"
+    CATEGORY = "QuickSize"
 
     def run(self, **kwargs):
         use_custom = kwargs["启用自定义尺寸"]
@@ -139,7 +139,7 @@ class EasySizeSimpleLatent:
         return ({"samples": latent},)
 
 # ------------- 简单尺寸设置 -------------
-class EasySizeSimpleSetting:
+class QuickSizeSimpleSetting:
     def __init__(self): pass
 
     @classmethod
@@ -157,7 +157,7 @@ class EasySizeSimpleSetting:
     RETURN_TYPES = ("INT", "INT")
     RETURN_NAMES = ("宽度", "高度")
     FUNCTION = "run"
-    CATEGORY = "EasySize"
+    CATEGORY = "QuickSize"
 
     def run(self, **kwargs):
         use_custom = kwargs["启用自定义尺寸"]
@@ -169,13 +169,13 @@ class EasySizeSimpleSetting:
 
 # -------------- 注册 --------------
 NODE_CLASS_MAPPINGS = {
-    "EasySizeSimpleImage":   EasySizeSimpleImage,
-    "EasySizeSimpleLatent":  EasySizeSimpleLatent,
-    "EasySizeSimpleSetting": EasySizeSimpleSetting,
+    "QuickSizeSimpleImage":   QuickSizeSimpleImage,
+    "QuickSizeSimpleLatent":  QuickSizeSimpleLatent,
+    "QuickSizeSimpleSetting": QuickSizeSimpleSetting,
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
-    "EasySizeSimpleImage":   "简单图像尺寸",
-    "EasySizeSimpleLatent":  "简单图像尺寸-Latent",
-    "EasySizeSimpleSetting": "简单尺寸设置",
+    "QuickSizeSimpleImage":   "简单图像尺寸",
+    "QuickSizeSimpleLatent":  "简单图像尺寸-Latent",
+    "QuickSizeSimpleSetting": "简单尺寸设置",
 }
